@@ -23,19 +23,45 @@ label,outer:active,button{cursor:url("data:image/svg+xml,%3Csvg version='1.1' id
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ waves.js fix
-.waves-effect:not(button){position:relative;cursor:initial;display:block!important;}
+.waves-effect:not(button) {
+    position: relative;
+    cursor: initial;
+    display: block!important;
+}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ colorz
-[bg-cyan]{background: #7ed6df!important}
-[bg-yellow]{background: #f9ca24!important}
-[bg-magenta]{background: #e056fd!important}
-[bg-black]{background: #535c68!important}
-[bg-light]{background: #f4f4f4!important}
+[bg-cyan] {
+    background: #7ed6df!important
+}
 
-[light]{color: mintcream!important}
-[dark]{color: dimgray!important}
-[cyan="500"]{color: #00bcd4;}
+[bg-yellow] {
+    background: #f9ca24!important
+}
+
+[bg-magenta] {
+    background: #e056fd!important
+}
+
+[bg-black] {
+    background: #535c68!important
+}
+
+[bg-light] {
+    background: #f4f4f4!important
+}
+
+[light] {
+    color: mintcream!important
+}
+
+[dark] {
+    color: dimgray!important
+}
+
+[cyan="500"] {
+    color: #00bcd4;
+}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ font sizes
@@ -65,7 +91,6 @@ meta[bg] {
     background-position: 4.5% 7%;
     background-size: 10vh 10vh;
     @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
         background-image:#{$prefix}linear-gradient(90deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, 0) .3vh),
         #{$prefix}linear-gradient(0deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, 0) .3vh);
     }
@@ -76,7 +101,6 @@ meta[bg] {
 meta[bg]:active+main {
     cursor: not-allowed!important;
     @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
         #{$prefix}box-shadow: inset 0 0 0 .75vh#9C27B0, 0 0 1vh .75vh#4A148C;
     }
 }
@@ -126,13 +150,55 @@ content {
 $gridcolor: rgb(192, 57, 43);
 /// allgemein
 section {
+    >section {
+        float: left;
+        display: inline-block;
+    }
+    vertical-align: middle;
+    display: inline-block;
     word-break: break-all;
     background-color: rgb(231, 76, 60);
     background-size: 10vmin 10vmin;
-    background-position: 0 0, 5vmin 5vmin;
+    background-position: 0 0,
+    5vmin 5vmin;
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         background-image: unquote($prefix) + linear-gradient(0deg, transparent 24%, $gridcolor 25%, $gridcolor 26%, transparent 27%, transparent 74%, $gridcolor 75%, $gridcolor 76%, transparent 77%, transparent), unquote($prefix) + linear-gradient(90deg, transparent 24%, $gridcolor 25%, $gridcolor 26%, transparent 27%, transparent 74%, $gridcolor 75%, $gridcolor 76%, transparent 77%, transparent);
+    } // framed  hintergrund
+    &[framed] {
+        background: #e5e5e5;
+        padding: .75% 1%;
+    } // framed schatten
+    &[framed]>outer {
+        @each$prefix in $prefix-list {
+            #{$prefix}box-shadow: 0 .1vh 1vh rgba(0, 0, 0, .12), 0 .2vh .2vh rgba(0, 0, 0, .24);
+            #{$prefix}transition: #{$prefix}box-shadow .2s ease-out;
+        } // hover-schatten bei framed
+        &[framed]>outer:hover {
+            @each$prefix in $prefix-list {
+                #{$prefix}box-shadow: 0 .4vh 2vh rgba(0, 0, 0, .19), 0 .2vh .2vh rgba(0, 0, 0, .23)
+            }
+        }
+    }
+    outer {
+        padding: 0 1vmin;
+        background: #f4f4f4;
+        display: block;
+    }
+    &[framed]>outer {
+        height: 100%;
+        width: 100%;
+    }
+    inner,
+    outer {
+        display: block
+    }
+    inner {
+        position: relative;
+        top: 50%;
+        @each$prefix in $prefix-list {
+            #{$prefix}transform: translateY(-50%);
+        }
     }
 }
 
@@ -192,67 +258,6 @@ section {
     }
 }
 
-/// framed
-// hintergrund
-section[framed] {
-    background: #e5e5e5
-}
-
-// schatten
-section[framed]>outer {
-    @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
-        #{$prefix}box-shadow: 0 .1vh 1vh rgba(0, 0, 0, .12), 0 .2vh .2vh rgba(0, 0, 0, .24);
-        #{$prefix}transition: #{$prefix}box-shadow .2s ease-out;
-    }
-}
-
-// schatten bei hover
-section[framed]>outer:hover {
-    @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
-        #{$prefix}box-shadow: 0 .4vh 2vh rgba(0, 0, 0, .19), 0 .2vh .2vh rgba(0, 0, 0, .23)
-    }
-}
-
-inner,
-outer {
-    display: block
-}
-
-inner {
-    position: relative;
-    //height: 25%;
-    top: 50%;
-    @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
-        #{$prefix}transform: translateY(-50%);
-    }
-}
-
-///  innerhalb section
-section outer {
-    padding: 0 1vmin;
-    background: #f4f4f4;
-    display: block;
-}
-
-section[framed] {
-    padding: .75% 1%;
-}
-
-section[framed]>outer {
-    height: 100%;
-    width: 100%;
-}
-
-section[framed]>outer>inner {
-    vertical-align: middle;
-    @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix); //#{$prefix}transform: translateY(25%);
-    } //top: 25%;
-}
-
 //⚡ HÖHE framed inner
 @for$i from+1 through+20 {
     //$value: percentage(0.01*$i/2);
@@ -292,10 +297,9 @@ section[framed]>outer>inner {
         }
     }
     input {
-
-    @each$prefix in $prefix-list {
-        #{$prefix}border-radius: .2vh;
-    }
+        @each$prefix in $prefix-list {
+            #{$prefix}border-radius: .2vh;
+        }
         background: mintcream;
         width: 92%;
         margin: 1.5% 4% 2% 4%;
@@ -314,7 +318,9 @@ section[framed]>outer>inner {
 }
 
 [form][inline] {
-  form{display:inline-block;}
+    form {
+        display: inline-block;
+    }
     >label {
         display: inline-block;
         float: left;
@@ -373,12 +379,11 @@ section[framed]>outer>inner {
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 // listen
-ul{
-  li{
-    bckground: cyan;
-  }
+ul {
+    li {
+        bckground: cyan;
+    }
 }
-
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //🚧 button = stub v
@@ -401,11 +406,9 @@ button:before {
     position: absolute;
     display: block;
     width: 0;
-
     @each$prefix in $prefix-list {
         #{$prefix}border-radius: 0;
     }
-  
     background-color: rgba(236, 240, 241, .3);
 }
 
@@ -446,7 +449,7 @@ button[pink="500"]:hover {
 
 $size-list:xs sm md lg xl;
 $i1: .4vh;
-$i2 : 0vh;
+$i2: 0vh;
 @each$size in $size-list {
     $i: index($size-list, $size);
     button[#{$size}] {
@@ -460,18 +463,21 @@ $i2 : 0vh;
 text {
     display: inline-block;
 }
+
 text[center] {
     display: block;
     @each$prefix in $prefix-list {
         #{$prefix}text-align: center;
     }
 }
+
 //links align
 text[left] {
     @each$prefix in $prefix-list {
         #{$prefix}text-align: left;
     }
 }
+
 //rechts align
 text[right] {
     @each$prefix in $prefix-list {
@@ -486,16 +492,14 @@ section[lightbox] {
         border-bottom: .4vh solid lightgray;
         width: 100%;
     }
-  
-@for$i from+1 through+20 {
-    $value: percentage(0.1*$i/2);
-    $name: $i/2;
-    $name: format($name, $i);
-    img[s#{$name}] {
-        width: $value+!important;
+    @for$i from+1 through+20 {
+        $value: percentage(0.1*$i/2);
+        $name: $i/2;
+        $name: format($name, $i);
+        img[s#{$name}] {
+            width: $value+!important;
+        }
     }
-} 
-  
     text {
         color: dimgray!important;
     }
@@ -505,5 +509,3 @@ section[lightbox] {
         #{$prefix}box-shadow: 0 0 .3vh .1vh darkgray;
     }
 }
-
-
