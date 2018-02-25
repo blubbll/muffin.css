@@ -7,7 +7,7 @@
  ▐ ▟▟▙ ▌*/
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡⚡ scss.funktionen
-$prefix-list: '-webkit-', '-khtml-', '-moz-', '-ms-', '-o-', '';
+$prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms-', '-xv-', '-o-', '';
 @function even($number){@return$number%2==0;}@function str-replace($string,$search,$replace:''){$index:str-index($string,$search);@if$index{@return str-slice($string,1,$index - 1)+$replace+str-replace(str-slice($string,$index+str-length($search)),$search,$replace)}@return$string}@function to-string($value){@return#inspect($value)}@function contains($input,$check){$value:str-index(inspect($input),$check);$bool:false;@if($value==1){$bool:true}@return$bool}@function format($input,$num){$output:"";@if(even($num)&&$num!=20){$output:inspect($input)+"0"}@if($num==20){$output:inspect($input)+""}@else{$output:str-replace(inspect($input),'.','')}@return$output}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -87,7 +87,7 @@ meta[bg]:active+main {
 main {
     height: 100%;
     width: auto;
-    font-size: 2vmin;
+    font-size: 1.5vh;
     display: block;
     position: relative;
     margin: auto;
@@ -278,20 +278,6 @@ section[framed]>outer>inner {
     }
 }
 
-section[lightbox] {
-    img {
-        border-bottom: .4vh solid lightgray;
-    }
-    text {
-        color: dimgray!important;
-    }
-    background: mintcream;
-    border: .2vh solid lightgray;
-    @each$prefix in $prefix-list {
-        #{$prefix}box-shadow: 0 0 .3vh .1vh darkgray;
-    }
-}
-
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ forms
 [form] {
@@ -306,7 +292,10 @@ section[lightbox] {
         }
     }
     input {
-        border-radius: .2vh;
+
+    @each$prefix in $prefix-list {
+        #{$prefix}border-radius: .2vh;
+    }
         background: mintcream;
         width: 92%;
         margin: 1.5% 4% 2% 4%;
@@ -325,6 +314,7 @@ section[lightbox] {
 }
 
 [form][inline] {
+  form{display:inline-block;}
     >label {
         display: inline-block;
         float: left;
@@ -382,7 +372,16 @@ section[lightbox] {
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
-//🚧 stub v
+// listen
+ul{
+  li{
+    bckground: cyan;
+  }
+}
+
+
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+//🚧 button = stub v
 button {
     background: transparent;
     border: none;
@@ -402,7 +401,11 @@ button:before {
     position: absolute;
     display: block;
     width: 0;
-    border-radius: 0%;
+
+    @each$prefix in $prefix-list {
+        #{$prefix}border-radius: 0;
+    }
+  
     background-color: rgba(236, 240, 241, .3);
 }
 
@@ -457,33 +460,33 @@ $i2 : 0vh;
 text {
     display: inline-block;
 }
-
 text[center] {
     display: block;
     @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
         #{$prefix}text-align: center;
     }
 }
-
+//links align
 text[left] {
     @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
         #{$prefix}text-align: left;
     }
 }
-
+//rechts align
 text[right] {
     @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
         #{$prefix}text-align: right;
     }
 }
 
-img {
-    width: 100%;
-}
-
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+//⚡ Bilderbox
+section[lightbox] {
+    img {
+        border-bottom: .4vh solid lightgray;
+        width: 100%;
+    }
+  
 @for$i from+1 through+20 {
     $value: percentage(0.1*$i/2);
     $name: $i/2;
@@ -491,4 +494,16 @@ img {
     img[s#{$name}] {
         width: $value+!important;
     }
+} 
+  
+    text {
+        color: dimgray!important;
+    }
+    background: mintcream;
+    border: .2vh solid lightgray;
+    @each$prefix in $prefix-list {
+        #{$prefix}box-shadow: 0 0 .3vh .1vh darkgray;
+    }
 }
+
+
