@@ -2,7 +2,8 @@
 Some css Framework i'v been working on for a while.
 
 It is meant for 'true' responsive fullscreen applications/websites that stay loyal even when the screen size changes.
-I've been working with techniques like this for a longer time now and wanted something stable, re-usable for multiple purposes like actual websites, blobs, or anything.
+It is also meant to work on old devices, without javascript, scratching at some of the edges of what CSS can do.
+I've been working with techniques like this for a longer time now and wanted something stable, re-usable for multiple purposes like actual websites, blogs, or anything.
 
 It is a work in the progress, i put everything into it i learned so far in UX design and front-end web development.
 
@@ -19,3 +20,5 @@ Current example / working dir: https://codepen.io/Blubbll/full/oEWaLP/
 It is basically a fixed grid with custom html components following this design.
 
 I am inspired by other codepen pens and Google's material design and flat design in general.
+
+raw testing 'cdn': https://rawgithub.com/blubbll/muffin.css/master/core.min.css
