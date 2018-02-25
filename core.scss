@@ -1,4 +1,5 @@
-/*©2018b
+/*!
+  ©2018b
  ▄▞▀▀▀▚▄ 
 ▟▚    ▝▙
 ▚▄▄▄▄▄▄▄▞
@@ -50,7 +51,6 @@ $size-list:xs sm md lg xl;
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ config.ratio
 $aspect-ratio: 3/2;
-
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ canvas(bg)
 meta[bg] {
@@ -64,25 +64,24 @@ meta[bg] {
     height: 200vh;
     background-position: 4.5% 7%;
     background-size: 10vh 10vh;
-  
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         background-image:#{$prefix}linear-gradient(90deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, 0) .3vh),
         #{$prefix}linear-gradient(0deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, 0) .3vh);
     }
-};
+}
+
+;
 //clicky (highlighting of main area)
 meta[bg]:active+main {
-  cursor: not-allowed!important;
-
+    cursor: not-allowed!important;
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
-        #{$prefix}box-shadow:
-          inset 0 0 0 .75vh#9C27B0,
-          0 0 1vh .75vh#4A148C;
+        #{$prefix}box-shadow: inset 0 0 0 .75vh#9C27B0, 0 0 1vh .75vh#4A148C;
     }
-};
+}
 
+;
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ main (content outer)
 main {
@@ -92,13 +91,11 @@ main {
     display: block;
     position: relative;
     margin: auto;
-    padding-bottom: (150vh/$aspect-ratio);
-    //
-
-      @each$prefix in $prefix-list {
-          $i: index($prefix-list, $prefix);
-          max-width: #{$prefix}calc(#{100vh*$aspect-ratio});
-      }
+    padding-bottom: (150vh/$aspect-ratio); //
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        max-width: #{$prefix}calc(#{100vh*$aspect-ratio});
+    }
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -112,16 +109,12 @@ content {
     left: 0;
     bottom: 0;
     right: 0;
-    width: 100%;
-      //pseudo padding
-      @each$prefix in $prefix-list {
-          $i: index($prefix-list, $prefix);
-          height: #{$prefix}calc(100% - 2vh);
-         width: #{$prefix}calc(100% - 2vh);
-      }
-  
-  
-  //
+    width: 100%; //pseudo padding
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        height: #{$prefix}calc(100% - 2vh);
+        width: #{$prefix}calc(100% - 2vh);
+    } //
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         #{$prefix}box-shadow: 0 2vh 12vh .3vh rgba(0, 0, 0, 0.5), 0 2vh 12vh 5vh rgba(236, 240, 241, 1);
@@ -133,10 +126,10 @@ content {
 $gridcolor: rgb(192, 57, 43);
 /// allgemein
 section {
-   word-break:break-all;
-   background-color: rgb(231, 76, 60);
-   background-size:10vmin 10vmin;
-   background-position:0 0,5vmin 5vmin;
+    word-break: break-all;
+    background-color: rgb(231, 76, 60);
+    background-size: 10vmin 10vmin;
+    background-position: 0 0, 5vmin 5vmin;
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         background-image: unquote($prefix) + linear-gradient(0deg, transparent 24%, $gridcolor 25%, $gridcolor 26%, transparent 27%, transparent 74%, $gridcolor 75%, $gridcolor 76%, transparent 77%, transparent), unquote($prefix) + linear-gradient(90deg, transparent 24%, $gridcolor 25%, $gridcolor 26%, transparent 27%, transparent 74%, $gridcolor 75%, $gridcolor 76%, transparent 77%, transparent);
@@ -153,6 +146,7 @@ section {
         height: $value+!important;
     }
 }
+
 // Weite
 @for$i from+1 through+20 {
     $value: percentage(0.1*$i/2);
@@ -162,6 +156,7 @@ section {
         width: $value+!important;
     }
 }
+
 /// offsets
 // Höhe
 @for$i from+1 through+20 {
@@ -179,6 +174,7 @@ section {
         margin-left: 0;
     }
 }
+
 // Weite
 @for$i from+1 through+20 {
     $value: percentage(0.1*$i/2);
@@ -196,11 +192,10 @@ section {
     }
 }
 
-
 /// framed
 // hintergrund
-section[framed]{
-  background:#e5e5e5
+section[framed] {
+    background: #e5e5e5
 }
 
 // schatten
@@ -211,46 +206,51 @@ section[framed]>outer {
         #{$prefix}transition: #{$prefix}box-shadow .2s ease-out;
     }
 }
+
 // schatten bei hover
 section[framed]>outer:hover {
-
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         #{$prefix}box-shadow: 0 .4vh 2vh rgba(0, 0, 0, .19), 0 .2vh .2vh rgba(0, 0, 0, .23)
     }
 }
-inner,outer{display:block}
-inner{position: relative;
 
-//height: 25%;
+inner,
+outer {
+    display: block
+}
+
+inner {
+    position: relative;
+    //height: 25%;
     top: 50%;
-     @each$prefix in $prefix-list {
-         $i: index($prefix-list, $prefix);
-         #{$prefix}transform: translateY(-50%);
-     }
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        #{$prefix}transform: translateY(-50%);
+    }
 }
+
 ///  innerhalb section
-section outer{
-  padding: 0 1vmin;
-  background:#f4f4f4;
-  display: block;
+section outer {
+    padding: 0 1vmin;
+    background: #f4f4f4;
+    display: block;
 }
 
-section[framed]{
-  padding: .75% 1%;
+section[framed] {
+    padding: .75% 1%;
 }
-section[framed]>outer{
-  height: 100%;
-  width: 100%;
-}
-section[framed]>outer>inner{
-  vertical-align: middle;
 
-     @each$prefix in $prefix-list {
-         $i: index($prefix-list, $prefix);
-         //#{$prefix}transform: translateY(25%);
-     }
-  //top: 25%;
+section[framed]>outer {
+    height: 100%;
+    width: 100%;
+}
+
+section[framed]>outer>inner {
+    vertical-align: middle;
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix); //#{$prefix}transform: translateY(25%);
+    } //top: 25%;
 }
 
 //⚡ HÖHE framed inner
@@ -260,198 +260,230 @@ section[framed]>outer>inner{
     $name: $i/2;
     $name: format($name, $i);
     [h#{$name}][framed]>outer {
-          //padding-top: 50%;
+        //padding-top: 50%;
         padding-top: $value;
-       padding-bottom: $value;
-      //height: $value;
-      
+        padding-bottom: $value; //height: $value;
     }
- }
+}
+
 //⚡ WEITE framed inner
- @for$i from+1 through+20 {
+@for$i from+1 through+20 {
     //$value: percentage(0.01*$i/2);
     $value: $i/4+vh;
-     $name: $i/2;
-     $name: format($name, $i);
-     [w#{$name}][framed]>outer>inner {
-         padding-left: $value;
-         padding-right: $value;
-     }
- }
-
-
-section[lightbox]{
-  img{border-bottom: .4vh solid lightgray;}
-  text{
-    
-    color: dimgray!important;
-  }
-  background: mintcream;
-  border: .2vh solid lightgray;
-
-    @each$prefix in $prefix-list {
-        #{$prefix}box-shadow:
-          0 0 .3vh .1vh darkgray;
+    $name: $i/2;
+    $name: format($name, $i);
+    [w#{$name}][framed]>outer>inner {
+        padding-left: $value;
+        padding-right: $value;
     }
-  
+}
+
+section[lightbox] {
+    img {
+        border-bottom: .4vh solid lightgray;
+    }
+    text {
+        color: dimgray!important;
+    }
+    background: mintcream;
+    border: .2vh solid lightgray;
+    @each$prefix in $prefix-list {
+        #{$prefix}box-shadow: 0 0 .3vh .1vh darkgray;
+    }
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ forms
-
-[form]{
-  background: rgba(0,0,0,.1)!important;
-  //label default
-  label{
-  display: block;
-  width: 100%;padding-top:.5vh;padding-left:.5vh;
+[form] {
+    background: rgba(0, 0, 0, .1)!important; //label default
+    label {
+        display: block;
+        width: 100%;
+        padding-top: .5vh;
+        padding-left: .5vh;
         @each$prefix in $prefix-list {
-          #{$prefix}transform: translateY(2%);
-      }
+            #{$prefix}transform: translateY(2%);
+        }
+    }
+    input {
+        border-radius: .2vh;
+        background: mintcream;
+        width: 92%;
+        margin: 1.5% 4% 2% 4%;
+        border-bottom: .2vmin solid darkgray;
+        padding: 1.6vh .4vh;
+        display: block-inline;
+        height: 3vmin;
+        font-size: 2.4vmin;
+    }
+    input:active,
+    input:focus {
+        outline: none;
+        background: white;
+        border-bottom: .2vmin solid dimgray;
+    }
 }
-  
-  input{
-  border-radius:.2vmin;
-  background: #fff;
-  width:92%;
-  margin: 2% 4%;
 
-  border-bottom: .2vmin solid darkgray;
-  padding: 6% 4%;
-  display: block-inline;
-  height: 3vmin;
-   font-size: 2.4vmin;
-}
-
-input:active,input:focus{
-  outline: none;
-  background: mintcream;
-  border-bottom: .2vmin solid dimgray;
- 
-}
-  
-  
-  [inline]{
-    label{
-  display: inline;
-  float:left;
+[form][inline] {
+    >label {
+        display: inline-block;
+        float: left;
+        width: 6vmin;
+        margin-top: 1vh;
+        padding-top: 0;
+        display: inline-block;
+        float: left;
+    }
+    >input {
+        margin: 2% 0;
         @each$prefix in $prefix-list {
-          #{$prefix}transform: translateY(2%);
-      }
+            width: #{$prefix}calc( 96% - 6vmin)
+        }
     }
-    input{
-      float:left;
-      width: unset;
-    }
-    }
-  
 }
+
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+//⚡ tables
+[typ='tabelle'] {
+    font-size: 1.2vmin;
+    margin-top: 2vh;
+    line-height: .8vmin;
+    display: table;
+    border-collapse: collapse;
+    border: .8vmin solid black;
+    row,
+    header {
+        display: table-row;
+    }
+    header {
+        font-weight: bold;
+        background: #212529!important;
+        color: #fff;
+        border: .8 vmin solid mintcream!important;
+        cell {
+            background: #2f3542;
+        }
+        cell:nth-child(1n+1):not(:last-child) {
+            border-right: .4vmin solid rgba(0, 0, 0, 0.3);
+        }
+    }
+    cell {
+        display: table-cell;
+        vertical-align: top;
+        padding: .2vw;
+        text-align: center;
+        background: #f1f2f6;
+    }
+    row {
+        cell:nth-child(1n+1):not(:last-child) {
+            border-right: .2vmin solid rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //🚧 stub v
-
 button {
-background: transparent;
-border: none;
-box-shadow:  0 .3vh .1vh .3vh rgba(0, 0, 0, 0.225);
-color: black;
-cursor: pointer;
-margin: 0 .5vh;
-opacity: .75;
-outline-offset: .2vh;
-outline: #000 solid .2vh;
-position: relative;
-transition: box-shadow .1s;
+    background: transparent;
+    border: none;
+    box-shadow: 0 .3vh .1vh .3vh rgba(0, 0, 0, 0.225);
+    color: black;
+    cursor: pointer;
+    margin: 0 .5vh;
+    opacity: .75;
+    outline-offset: .2vh;
+    outline: #000 solid .2vh;
+    position: relative;
+    transition: box-shadow .1s;
 }
 
 button:before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 0;
-  border-radius: 0%;
-  background-color: rgba(236,240,241, .3);
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    border-radius: 0%;
+    background-color: rgba(236, 240, 241, .3);
 }
 
-button:hover{
-  box-shadow: 0 .4vh 1vh .4vh rgba(0, 0, 0, 0.225),
-    inset 0 0 100vh rgba(255,255,255, .5);
+button:hover {
+    box-shadow: 0 .4vh 1vh .4vh rgba(0, 0, 0, 0.225), inset 0 0 100vh rgba(255, 255, 255, .5);
 }
 
 button:active:before {
-  width: 100%;
-  padding-top: 50%;
-  top:50%;
-  left:50%;  
-
-     
-     @each$prefix in $prefix-list {
-         $i: index($prefix-list, $prefix);
-         #{$prefix}transform: translate(-50%, -50%);
-     }
-  
-     @each$prefix in $prefix-list {
-         $i: index($prefix-list, $prefix);
-         #{$prefix}transition: width .1s ease-out, padding-top .1s ease-out;
-     }
+    width: 100%;
+    padding-top: 50%;
+    top: 50%;
+    left: 50%;
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        #{$prefix}transform: translate(-50%, -50%);
+    }
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        #{$prefix}transition: width .1s ease-out, padding-top .1s ease-out;
+    }
 }
 
-button[dark]{
-  color: #fff;
-  outline: #fff solid .2vh;
+button[dark] {
+    color: #fff;
+    outline: #fff solid .2vh;
 }
 
-button[pink="500"]{
-  color: #fff;
-  background: #e91e63;
-  outline: #b0003a solid .2vh;
-}
-button[pink="500"]:hover{
-  background: #ff6090;
-  box-shadow:inset 0 0 100vh #ff6090;
+button[pink="500"] {
+    color: #fff;
+    background: #e91e63;
+    outline: #b0003a solid .2vh;
 }
 
-
+button[pink="500"]:hover {
+    background: #ff6090;
+    box-shadow: inset 0 0 100vh #ff6090;
+}
 
 $size-list:xs sm md lg xl;
-    $i1: .4vh;
-    $i2:  0vh;
+$i1: .4vh;
+$i2 : 0vh;
 @each$size in $size-list {
     $i: index($size-list, $size);
     button[#{$size}] {
-      $i1: $i1 + .2;
-      $i2: $i2 + 1;
-        //padding: $i1 $i2;
+        $i1: $i1 + .2;
+        $i2: $i2 + 1; //padding: $i1 $i2;
     }
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ text
-
-text{
-  display:inline-block;
+text {
+    display: inline-block;
 }
-text[center]{
-  display:block;
 
-      @each$prefix in $prefix-list {
-          $i: index($prefix-list, $prefix);
-          #{$prefix}text-align: center;
-      }
+text[center] {
+    display: block;
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        #{$prefix}text-align: center;
+    }
 }
-text[left]{
 
-      @each$prefix in $prefix-list {
-          $i: index($prefix-list, $prefix);
-          #{$prefix}text-align: left;
-      }
+text[left] {
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        #{$prefix}text-align: left;
+    }
 }
-text[right]{
 
-      @each$prefix in $prefix-list {
-          $i: index($prefix-list, $prefix);
-          #{$prefix}text-align: right;
-      }
+text[right] {
+    @each$prefix in $prefix-list {
+        $i: index($prefix-list, $prefix);
+        #{$prefix}text-align: right;
+    }
 }
-img{width:100%;}
+
+img {
+    width: 100%;
+}
+
 @for$i from+1 through+20 {
     $value: percentage(0.1*$i/2);
     $name: $i/2;
