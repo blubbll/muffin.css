@@ -1,10 +1,9 @@
-/*! ▗▄▄▄      
-   ▄█▀▀▀█▄▗   
- ▗█▀     ▀▀▀█▖ 
-▜█▄▄▄▄▄▄▄▄▄▄▄█▛
-  █▖        █▌ 
-  ▜▌        █  
-  ▐█▄▄▄▄▄▄▄▄█  
+/*!  
+   ▗▄▅▄▖     
+ ▗█▀ o °▀▀█▖ 
+▜█▄▄▄▄▄▄▄▄▄█▛                        ┌─┐┌─┐┌─┐
+  █▖      █▌          │    └─┐└─┐
+   █▄▄▄▄▄▄█                 o   └─┘└─┘└─┘ 
   \*!©2018b*/
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡⚡ scss.funktionen
@@ -79,7 +78,7 @@ $size-list:xs sm md lg xl;
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ config.ratio
-$aspect-ratio: 3/2;
+$aspect-ratio: 16/10; //3/2
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ canvas(bg)
 meta[bg] {
@@ -119,10 +118,11 @@ main {
     display: block;
     position: relative;
     margin: auto;
-    padding-bottom: (150vh/$aspect-ratio); //
+    //padding-bottom: (150vh/$aspect-ratio);
+    padding-bottom: 100vh;
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
-        max-width: #{$prefix}calc(#{100vh*$aspect-ratio});
+        max-width: #{$prefix}calc(#{100vh*$aspect-ratio});//remove for full fluid, not recommended
     }
 }
 
@@ -177,7 +177,7 @@ section {
             #{$prefix}box-shadow: 0 .1vh 1vh rgba(0, 0, 0, .12), 0 .2vh .2vh rgba(0, 0, 0, .24);
             #{$prefix}transition: #{$prefix}box-shadow .2s ease-out;
         } // hover-schatten bei framed
-        &[framed]>outer:hover {
+        &:hover {
             @each$prefix in $prefix-list {
                 #{$prefix}box-shadow: 0 .4vh 2vh rgba(0, 0, 0, .19), 0 .2vh .2vh rgba(0, 0, 0, .23)
             }
@@ -324,7 +324,7 @@ section {
     >label {
         display: inline-block;
         float: left;
-        width: 8vw;
+        width: 20%;
         margin-top: 1.05vh;
         padding-top: .4vh;
         padding-left: .8vw;
@@ -334,10 +334,8 @@ section {
         position: absolute;
     }
     >input {
-        margin-left: 4vw;
-        @each$prefix in $prefix-list {
-            width: #{$prefix}calc( 100% - 5vw)
-        }
+        margin-left: 20%;
+        width: 76%
     }
 }
 
