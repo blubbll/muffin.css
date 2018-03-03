@@ -1,18 +1,38 @@
-/*!  
-   ▗▄▅▄▖     
- ▗█▀ o °▀▀█▖ 
+/*! ▗▄▅▄▖  *\   
+ ▗█▀ o ° ▀█▖ 
 ▜█▄▄▄▄▄▄▄▄▄█▛⁣
-  █▖       █▌
-   █▄▄▄▄▄▄▄█  .🅲🆂🆂 
-  \*!©2018b*/
+  █▖.🅲🆂🆂 █▌
+   █▄▄▄▄▄▄▄█   
+\*   ©2018b   */
+
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡⚡ scss.funktionen
 $prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms-', '-xv-', '-o-', '';
 @function even($number){@return$number%2==0;}@function str-replace($string,$search,$replace:''){$index:str-index($string,$search);@if$index{@return str-slice($string,1,$index - 1)+$replace+str-replace(str-slice($string,$index+str-length($search)),$search,$replace)}@return$string}@function to-string($value){@return#inspect($value)}@function contains($input,$check){$value:str-index(inspect($input),$check);$bool:false;@if($value==1){$bool:true}@return$bool}@function format($input,$num){$output:"";@if(even($num)&&$num!=20){$output:inspect($input)+"0"}@if($num==20){$output:inspect($input)+""}@else{$output:str-replace(inspect($input),'.','')}@return$output}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+//⚡Mixins
+@mixin border-radius($value) {
+@each$prefix in $prefix-list {
+            #{$prefix}border-radius:$value;
+        }
+}
+@mixin calc($value) {
+@each$prefix in $prefix-list {
+            #{$prefix}calc:$value;
+        }
+}
+
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡css.reset
-*,:after,:before,:root{@each$prefix in$prefix-list{$i:index($prefix-list,$prefix);#{$prefix}tap-highlight-color:transparent;#{$prefix}box-sizing:border-box};overflow:visible;margin:0;padding:0;background-color:transparent;border:none;text-decoration:none;user-select:none;list-style:none;position:relative}body,html{@each$prefix in$prefix-list{$i:index($prefix-list,$prefix);#{$prefix}box-sizing:border-box;#{$prefix}text-rendering:optimizeLegibility;#{$prefix}font-smoothing:antialiased;#{$prefix}text-size-adjust:100%;}height:100vh;width:100vw;-webkit-tap-highlight-cellor:transparent;font-family:sans-serif;margin:0;padding:0}article,p,ul{all:unset}
+*, *:after, *:before, *::after, *::before, :root { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}tap-highlight-color: transparent; #{$prefix}box-sizing: border-box } overflow:visible; margin:0; padding:0; background-color:transparent; border:none; text-decoration:none; user-select:none; list-style:none; position:relative } body, html { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}text-rendering: optimizeLegibility; #{$prefix}font-smoothing: antialiased; #{$prefix}text-size-adjust: 100%; } font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif"; font-weight: 200; word-wrap: break-word; height:100vh; width:100vw; -webkit-tap-highlight-cellor:transparent; font-family:sans-serif; margin:0; padding:0 } article, p, ul { all: unset }
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+//⚡ debug
+[debug]{
+  background: cyan!important;
+  z-index: 2018!important;
+  color: black!important;
+}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ cursor
@@ -37,6 +57,10 @@ $aspect-ratio: 16/10; //3/2
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ font sizes
+
+$default-fontsize: 2vmin;
+$default-lineheight: 2.2vmin;
+
 $size-list:xs sm md lg xl;
 @each$size in $size-list {
     $i: index($size-list, $size);
@@ -115,12 +139,13 @@ meta[bg]:active+main>content {
 main {
     height: 100%;
     width: auto;
-    font-size: 1.5vh;
+    font-size: $default-fontsize;
     display: block;
     position: relative;
     margin: auto;
     //padding-bottom: (150vh/$aspect-ratio);
     padding-bottom: 100vh;
+  
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         max-width: #{$prefix}calc(#{100vh*$aspect-ratio});//remove for full fluid, not recommended
@@ -186,7 +211,8 @@ section {
     }
   //outer
     &[framed]>outer {
-      border-radius: .3vmin;
+      @include border-radius(.3vmin);
+      
         padding: 0 1vmin;
         background: #f4f4f4;
         display: block;
@@ -298,20 +324,19 @@ section {
         width: 100%;
         padding-top: .8vh;
         padding-left: .8vh;
-        font-size: 1.2vh;
+        font-size: $default-fontsize;
     }
     input {
-        @each$prefix in $prefix-list {
-            #{$prefix}border-radius: .2vh;
-        }
+        @include border-radius(.2vh);
+      
         background: mintcream;
         width: 92%;
         margin: 1.5% 4% 2% 4%;
         border-bottom: .2vmin solid darkgray;
         padding: 1.6vh .4vw;
         display: block-inline;
-        height: 3vh;
-        font-size: 1.4vw;
+        height: 3vmin;
+        font-size: $default-fontsize;
     }
     input:active,
     input:focus {
@@ -343,9 +368,8 @@ section {
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ tables
 [typ='tabelle'] {
-    font-size: 1.2vh;
-    margin-top: 2vh;
-    line-height: 2vh;
+    font-size: $default-fontsize;
+    line-height: $default-lineheight;
     display: table;
     border-collapse: collapse;
     border: .2vmin solid dimgray;
@@ -368,7 +392,7 @@ section {
     cell {
         display: table-cell;
         vertical-align: top;
-        padding: .2vw;
+        padding: .4vmin;
         text-align: center;
         background: #f1f2f6;
     }
@@ -390,17 +414,23 @@ ul {
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //🚧 button = stub v
 button {
-    background: transparent;
+  font-size: $default-fontsize;
+  line-height: $default-lineheight;
+    background: gray;
     border: none;
-    box-shadow: 0 .3vh .1vh .3vh rgba(0, 0, 0, 0.225);
+   // box-shadow: 0 .3vh .1vh .3vh rgba(0, 0, 0, 0.225);
     color: black;
     cursor: pointer;
     margin: 0 .5vh;
     opacity: .75;
-    outline-offset: .2vh;
-    outline: #000 solid .2vh;
-    position: relative;
-    transition: box-shadow .1s;
+    outline-offset: 1vh;
+    outline: #000 solid .4vh;
+  
+     @each$prefix in $prefix-list {
+      #{$prefix}box-shadow: 0 0 0 1vmin black;
+       #{$prefix}transition: box-shadow .1s;
+
+  }
 }
 
 button:before {
@@ -408,27 +438,25 @@ button:before {
     position: absolute;
     display: block;
     width: 0;
-    @each$prefix in $prefix-list {
-        #{$prefix}border-radius: 0;
-    }
+    outline-offset: .2vmin;
+    
+    @include border-radius(0);
+  
     background-color: rgba(236, 240, 241, .3);
 }
 
 button:hover {
-    box-shadow: 0 .4vh 1vh .4vh rgba(0, 0, 0, 0.225), inset 0 0 100vh rgba(255, 255, 255, .5);
+    box-shadow: 0 .1vmin 1vh .4vh rgba(0, 0, 0, 0.225), inset 0 0 100vh rgba(255, 255, 255, .2)
+    //box-shadow: inset 0 0 100vh #DA4453;
 }
 
 button:active:before {
     width: 100%;
-    padding-top: 50%;
     top: 50%;
     left: 50%;
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
         #{$prefix}transform: translate(-50%, -50%);
-    }
-    @each$prefix in $prefix-list {
-        $i: index($prefix-list, $prefix);
         #{$prefix}transition: width .1s ease-out, padding-top .1s ease-out;
     }
 }
@@ -438,27 +466,22 @@ button[dark] {
     outline: #fff solid .2vh;
 }
 
-button[pink="500"] {
-    color: #fff;
-    background: #e91e63;
-    outline: #b0003a solid .2vh;
+
+$red-dark: #ED5565;
+$red-light:#DA4453;
+
+$lightgray: #F5F7FA;
+
+button[red] {
+    color: $lightgray;
+    outline: $red-dark;
 }
 
-button[pink="500"]:hover {
-    background: #ff6090;
-    box-shadow: inset 0 0 100vh #ff6090;
+button[red]:hover {
+    outline: red;
+    box-shadow: inset 0 0 100vh red;
 }
 
-$size-list:xs sm md lg xl;
-$i1: .4vh;
-$i2: 0vh;
-@each$size in $size-list {
-    $i: index($size-list, $size);
-    button[#{$size}] {
-        $i1: $i1 + .2;
-        $i2: $i2 + 1; //padding: $i1 $i2;
-    }
-}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ text
@@ -511,3 +534,14 @@ section[lightbox] {
         #{$prefix}box-shadow: 0 0 .3vh .1vh darkgray;
     }
 }
+
+//$size-list:xs sm md lg xl;
+//$i1: .4vh;
+//$i2: 0vh;
+//@each$size in $size-list {
+//    $i: index($size-list, $size);
+//    button[#{$size}] {
+//        $i1: $i1 + .2;
+//        $i2: $i2 + 1; //padding: $i1 $i2;
+//    }
+//}
