@@ -1,8 +1,8 @@
 /*!muffin.css
-/* ▗▄▅▄▖  *\   
- ▗█▀ o ° ▀█▖ 
-▜█▄▄▄▄▄▄▄▄▄█▛⁣
-  █▖.🅲🆂🆂 █▌
+/*   ▄▄^▄▄  *\   
+  '█▀ o ° ▀█' 
+ '█▄▄▄▄▄▄▄▄▄█⁣'
+ '█         █▌'
    █▄▄▄▄▄▄▄█   
 \*   ©2018b   */
 
@@ -26,7 +26,7 @@ $prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡css.reset
-*, *:after, *:before, *::after, *::before, :root { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}tap-highlight-color: transparent; #{$prefix}box-sizing: border-box } overflow:visible; margin:0; padding:0; background-color:transparent; border:none; text-decoration:none; user-select:none; list-style:none; position:relative } body, html { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}text-rendering: optimizeLegibility; #{$prefix}font-smoothing: antialiased; #{$prefix}text-size-adjust: 100%; } font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif"; font-weight: 200; word-wrap: break-word; height:100vh; width:100vw; -webkit-tap-highlight-cellor:transparent; font-family:sans-serif; margin:0; padding:0 } article, p, ul { all: unset }
+*, *:after, *:before, *::after, *::before, :root { -webkit-tap-highlight-color: transparent;@each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}box-sizing: border-box } overflow:visible; margin:0; padding:0; background-color:transparent; border:none; text-decoration:none; user-select:none; list-style:none; position:relative } body, html { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}text-rendering: optimizeLegibility; #{$prefix}font-smoothing: antialiased; #{$prefix}text-size-adjust: 100%; } font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif"; font-weight: 200; word-wrap: break-word; height:100vh; width:100vw; -webkit-tap-highlight-cellor:transparent; font-family:sans-serif; margin:0; padding:0 } article, p, ul { all: unset }
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ debug
 [debug]{
@@ -66,8 +66,8 @@ $size-list:xs sm md lg xl;
 @each$size in $size-list {
     $i: index($size-list, $size);
     [#{$size}] {
-        font-size: $i+vh;
-        line-height: $i+1+vh;
+        font-size: $i+vmin;
+        line-height: $i+1+vmin;
     }
 }
 
@@ -207,7 +207,7 @@ section {
         } // hover-schatten bei framed
         &:hover {
             @each$prefix in $prefix-list {
-                #{$prefix}box-shadow: 0 .2rem .1rem rgba(0, 0, 0, .19), 0 .1rem .2rem rgba(0, 0, 0, .19)
+                #{$prefix}box-shadow: 0 .1rem .1rem rgba(0, 0, 0, .24), 0 .1rem 1rem rgba(0, 0, 0, .19)
             }
         }
     }
@@ -372,7 +372,7 @@ section[tabelle] {
     line-height: $default-lineheight;
     display: table;
     border-collapse: collapse;
-    border: .2vmin solid dimgray;
+    border: .1rem solid dimgray;
     row,
     header {
         display: table-row;
@@ -405,10 +405,23 @@ section[tabelle] {
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 // listen
-ul {
-    li {
-        bckground: cyan;
+[liste]{
+  margin: 1vmin 0;
+  ul,ol {
+      li {
+         
+      }
+  }
+  }
+[liste][inline]{
+  margin: 1vmin 0;
+  list-style: none;
+  ul,ol{
+    li{
+      float: left;
+      margin: 0 .2vmin;
     }
+  }
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -418,7 +431,7 @@ button {
     background-color: white;
     border: none;
     @each$prefix in $prefix-list {
-        #{$prefix}box-shadow: 0 .1rem .5rem black;
+        #{$prefix}box-shadow: 0 .1rem .1rem black;
         #{$prefix}transition: #{$prefix}box-shadow .2s ease-out;
     }
     color: black;
@@ -442,7 +455,7 @@ button {
     }
     &:hover {
         @each$prefix in $prefix-list {
-            #{$prefix}box-shadow: inset 0 0 100rem rgba(255, 255, 255, .3), 0 .2rem 1rem black;
+            #{$prefix}box-shadow: inset 0 0 100rem rgba(255, 255, 255, .3), 0 .1rem .5rem black;
         }
     }
     &:active:before {
