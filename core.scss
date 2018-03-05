@@ -1,8 +1,8 @@
-/*!muffin.css
+/*!
 /*   ▄▄^▄▄  *\   
   '█▀ o ° ▀█' 
  '█▄▄▄▄▄▄▄▄▄█⁣'
- '█         █▌'
+ '█𝘮𝘶𝘧𝘧𝘪𝘯.𝙘𝙨𝙨█'
    █▄▄▄▄▄▄▄█   
 \*   ©2018b   */
 
@@ -23,10 +23,25 @@ $prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms
             #{$prefix}calc:$value;
         }
 }
+@mixin translate($v1, $v2) {
+@each$prefix in $prefix-list {
+            #{$prefix}transform: translate($v1,$v2);
+        }
+}
+@mixin translateX($value) {
+@each$prefix in $prefix-list {
+            #{$prefix}transform: translateX($value);
+        }
+}
+@mixin translateY($value) {
+@each$prefix in $prefix-list {
+            #{$prefix}transform: translateY($value);
+        }
+}
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡css.reset
-*, *:after, *:before, *::after, *::before, :root { -webkit-tap-highlight-color: transparent;@each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}box-sizing: border-box } overflow:visible; margin:0; padding:0; background-color:transparent; border:none; text-decoration:none; user-select:none; list-style:none; position:relative } body, html { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}text-rendering: optimizeLegibility; #{$prefix}font-smoothing: antialiased; #{$prefix}text-size-adjust: 100%; } font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif"; font-weight: 200; word-wrap: break-word; height:100vh; width:100vw; -webkit-tap-highlight-cellor:transparent; font-family:sans-serif; margin:0; padding:0 } article, p, ul { all: unset }
+*, *:after, *:before, *::after, *::before, :root { -webkit-tap-highlight-color: transparent;@each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}box-sizing: border-box } overflow:visible; margin:0; padding:0; background-color:transparent; border:none; text-decoration:none; user-select:none; list-style:none; position:relative } body,form, html { @each$prefix in$prefix-list { $i: index($prefix-list, $prefix); #{$prefix}text-rendering: optimizeLegibility; #{$prefix}font-smoothing: antialiased; #{$prefix}text-size-adjust: 100%; } font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif"; font-weight: 200;font-size: 100%; word-wrap: break-word; height:100%; position: absolute; width:100%; -webkit-tap-highlight-cellor:transparent; font-family:sans-serif; margin:0; padding:0; } article, p, ul { all: unset }
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ debug
 [debug]{
@@ -146,7 +161,6 @@ main {
     position: relative;
     margin: auto;
     //padding-bottom: (150vh/$aspect-ratio);
-    padding-bottom: 100vh;
   
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
@@ -230,9 +244,7 @@ section {
     inner {
         position: relative;
         top: 50%;
-        @each$prefix in $prefix-list {
-            #{$prefix}transform: translateY(-50%);
-        }
+        @include translateY(-50%);
     }
 }
 
@@ -307,8 +319,8 @@ section {
 
 //⚡ WEITE framed inner
 @for$i from+1 through+20 {
-    //$value: percentage(0.01*$i/2);
-    $value: $i/4+vh;
+    $value: percentage(0.02*$i/2);
+    //$value: $i/4+vh;
     $name: $i/2;
     $name: format($name, $i);
     [w#{$name}][framed]>outer>inner {
@@ -408,8 +420,13 @@ section[tabelle] {
 [liste]{
   margin: 1vmin 0;
   ul,ol {
+    padding-left:0;
+    list-style:none;
+    list-style-position: inside;
       li {
-         
+        &:hover{
+          @include translateX(10%);
+        }
       }
   }
   }
@@ -463,9 +480,8 @@ button {
         height: 120%;
         top: 50%;
         left: 50%;
-        @each$prefix in $prefix-list {
-            #{$prefix}transform: translate(-50%, -50%);
-        }
+      
+      @include translate(-50%, -50%);
     }
 }
 
@@ -513,7 +529,6 @@ button[blue]{
   background-color: #5D9CEC;
   outline-color: #4A89DC;
 }
-
 button[purple]{
   background-color: #AC92EC;
   outline-color: #967ADC;
@@ -540,6 +555,7 @@ button[dark]{
 text {
   line-height: $default-lineheight;
     display: inline-block;
+  text-shadow: .01rem .01rem rgba(0,0,0, .2);
 }
 
 text[center] {
@@ -561,6 +577,70 @@ text[right] {
     @each$prefix in $prefix-list {
         #{$prefix}text-align: right;
     }
+}
+
+text[slate] {
+    hover{ color: #F5F7FA;}
+    color: #E6E9ED;
+}
+
+text[pink] {
+    hover{ color: #EC87C0;}
+    color: #D770AD;
+}
+
+text[red]{
+  &:hover{ color: #ED5565;}
+  color:#DA4453;
+}
+
+text[orange]{
+  &:hover{ color:  #FC6E51;}
+  color: #E9573F;
+}
+
+text[yellow]{
+  &:hover{ color:  #FFCE54;}
+  color: #FCBB42;
+}
+
+text[green]{
+  &:hover{ color:  #A0D468;}
+  color: #8CC152;
+}
+
+text[mint]{
+  &:hover{ color:  #48CFAD;}
+  color: #37BC9B;
+}
+
+text[aqua]{
+  &:hover{ color:  #4FC1E9;}
+  color: #3BAFDA;
+}
+
+text[blue]{
+  &:hover{ color:  #5D9CEC;}
+  color: #4A89DC;
+}
+text[purple]{
+  &:hover{color: #AC92EC;}
+  color: #967ADC;
+}
+
+text[light] {
+  &:hover{ color:  #F5F7FA;}
+  color: #E6E9ED;
+}
+
+text[gray]{
+  &:hover{ color:  #CCD1D9;}
+  color: #AAB2BD;
+}
+
+text[dark]{
+  &:hover{ color:  #656D78;}
+  color: #434A54;
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
