@@ -92,29 +92,13 @@ $size-list:xs sm md lg xl;
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ colorz
-[bg-cyan] {
-    background: #7ed6df
-}
 
-[bg-yellow] {
-    background: #f9ca24
-}
-
-[bg-magenta] {
-    background: #e056fd
-}
-
-[bg-black] {
-    background: #535c68
-}
+//STUB
 
 [bg-empty] {
-    background:#e5e5e5
+    background:#e5e5e5!important
 }
 
-[bg-light] {
-    background: #f4f4f4
-}
 
 text[light] {
     color: mintcream
@@ -146,14 +130,26 @@ meta[bg] {
         #{$prefix}linear-gradient(0deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, 0) .3vh);
     }
 }
+meta[bg][dark]{
+    background-color: #535c68!important;
+    @each$prefix in $prefix-list {
+        background-image:#{$prefix}linear-gradient(90deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, 0) .3vh),
+        #{$prefix}linear-gradient(0deg, rgba(0,0,0, .25) 0, rgba(255,255,255, 0) .3vh);
+    }
+}
 
-;
 //clicky (highlighting of main area)
 meta[bg]:active+main>content {
     @each$prefix in $prefix-list {
         //#{$prefix}box-shadow: inset 0 0 0 .75vh#9C27B0, 0 0 0 .75vh#4A148C!important;
       box-shadow: 
         0 2vh 7.5vh 1.5vh #9C27B0, 0 2vh 10vh 10vh rgba(236, 240, 241, 1);
+    }
+}
+meta[bg][dark]:active+main>content {
+    @each$prefix in $prefix-list {
+      box-shadow: 
+        0 2vh 7.5vh 1.5vh #9C27B0, 0 2vh 10vh 10vh rgba(83,92,104, 1);
     }
 }
 
@@ -192,7 +188,7 @@ content {
         $i: index($prefix-list, $prefix);
         height: #{$prefix}calc(100% - 2vh);
         width: #{$prefix}calc(100% - 2vh);
-    } // raster außen
+    } // rastershadow außen
     @each$prefix in $prefix-list {
         #{$prefix}box-shadow: 0 2vh 10vh .5vh rgba(0, 0, 0, 0.5), 0 2vh 10vh 10vh rgba(236, 240, 241, 1);
     }
