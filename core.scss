@@ -498,6 +498,8 @@ section[tabelle] {
         display: table-row;
     }
     header {
+        border: .1rem solid darkgray;
+        border-bottom: none;
         font-weight: bold;
         background: #212529!important;
         color: #fff;
@@ -526,9 +528,11 @@ section[tabelle] {
     border-left: none;
     header{
       z-index: 1;
-      border-right: .1rem solid dimgray;
+      border-top: none;
+      border-right: .1rem solid darkgray;
       cell{
         border-right: none;
+       
         border-left: .2rem solid transparent;
         border-right: .2rem solid transparent;
         display: block!important;
@@ -568,14 +572,8 @@ section[tabelle] {
         padding-left: 0;
         list-style: none;
         list-style-position: inside;
-        li {
-          
-            &:hover {
-                @include translateX(10%);
-            }
-        }
       li:nth-child(1n+1):not(:last-child){
-        margin-bottom: 1vh;
+        margin-bottom: 1.5vw;
       }
       
     }
@@ -586,14 +584,28 @@ section[tabelle] {
         padding-left: 0;
         li {
             float: left;
-            margin: 0 .2vmin;
+           
         }
         li:nth-child(1n+1):not(:last-child){
         margin-bottom: 0;
+        margin-right: .8rem;
       }
        
     }
 }
+}
+li[button]{
+  border-bottom: .1rem solid dimgray;
+}
+li[button]:hover{
+  border-bottom: .1rem solid mintcream;
+}
+li[star]:before{
+  content: " \2605 ";
+}
+
+li[line]:before{
+  content: "\268A";
 }
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //🚧 button
@@ -642,6 +654,7 @@ button {
 button[link] {
     background: transparent;
     outline-color: transparent;
+    box-shadow: none;
 }
 
 button[slate] {
