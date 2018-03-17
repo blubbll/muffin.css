@@ -49,6 +49,17 @@ $prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+//⚡ something fancy
+[hover-shine]{
+  outline: transparent;
+  transition: outline 350ms!important;
+}
+[hover-shine]:hover{
+  outline: 200vh solid rgba(0,0,0,0.45);
+  z-index: 2018;
+}
+
+//▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡helpers
 [right] {
     float: right;
@@ -517,16 +528,18 @@ section[tabelle] {
     border-left: none;
     header{
       z-index: 1;
-      border-right: .1rem solid dimgray;;
+      border-right: .1rem solid dimgray;
       cell{
         border-right: none;
-        
+        border-left: .2rem solid transparent;
+        border-right: .2rem solid transparent;
         display: block!important;
       }
       cell:nth-child(1n+1):not(:last-child){
         border-bottom: .075rem dimgray solid;
         border-right: none;
         text-align: center;
+        
       }
       display: block!important;
       float: left;
@@ -536,6 +549,8 @@ section[tabelle] {
       display: block!important;
       cell{
         border-right: none;
+        text-indent: .4rem;
+        border-right: .2rem solid transparent;
         display: block!important;
         text-align: left;
       }
