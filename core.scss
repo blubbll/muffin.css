@@ -569,15 +569,17 @@ section[tabelle] {
         list-style: none;
         list-style-position: inside;
         li {
+          
             &:hover {
                 @include translateX(10%);
             }
         }
+      li:nth-child(1n+1):not(:last-child){
+        margin-bottom: 1vh;
+      }
+      
     }
-}
-
-[liste][inline] {
-    margin: 1vmin 0;
+&[inline] {
     list-style: none;
     ul,
     ol {
@@ -586,9 +588,13 @@ section[tabelle] {
             float: left;
             margin: 0 .2vmin;
         }
+        li:nth-child(1n+1):not(:last-child){
+        margin-bottom: 0;
+      }
+       
     }
 }
-
+}
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //🚧 button
 button {
@@ -631,6 +637,11 @@ button {
         @include translate(-50%,
         -50%);
     }
+}
+
+button[link] {
+    background: transparent;
+    outline-color: transparent;
 }
 
 button[slate] {
