@@ -709,14 +709,14 @@ text {
             #{$prefix}text-align: right;
         }
     }
-    &[u] {
-        text-decoration: underline;
-    }
-    &[i] {
+    &[i],i {
         font-style: italic;
     }
-    &[o] {
+    &[o],o {
         font-style: oblique;
+    }
+    &[u],u {
+        text-decoration: underline!important;
     }
 }
 
