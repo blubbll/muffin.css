@@ -1,5 +1,5 @@
 /*!
-/*   ▄▄^▄▄  *\   
+/*   ▄▄^▄▄   *\   
   '█▀ o ° ▀█' 
  '█▄▄▄▄▄▄▄▄▄█⁣'
  '█𝘮𝘶𝘧𝘧𝘪𝘯.𝙘𝙨𝙨█'
@@ -261,7 +261,7 @@ section {
         background-image: unquote($prefix) + linear-gradient(0deg, transparent 24%, $gridcolor 25%, $gridcolor 26%, transparent 27%, transparent 74%, $gridcolor 75%, $gridcolor 76%, transparent 77%, transparent), unquote($prefix) + linear-gradient(90deg, transparent 24%, $gridcolor 25%, $gridcolor 26%, transparent 27%, transparent 74%, $gridcolor 75%, $gridcolor 76%, transparent 77%, transparent);
     } // framed  hintergrund
     &[framed] {
-        background: #e5e5e5;
+        background: ghostwhite;
         padding: .75% 1%;
     } // framed outer schatten
     &[framed]>outer {    
@@ -280,7 +280,7 @@ section {
       @include border-radius(.3vmin);
       
         padding: 0 1vmin;
-        background: #f4f4f4;
+        background: white;
         display: block;
     }
     outer {
@@ -430,6 +430,7 @@ section {
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ tables
 section[tabelle] {
+    background: transparent!important;
     font-size: $default-fontsize;
     line-height: $default-lineheight;
     display: table;
@@ -443,12 +444,12 @@ section[tabelle] {
         font-weight: bold;
         background: #212529!important;
         color: #fff;
-        border: .8 vmin solid mintcream!important;
+        border: .1 rem solid mintcream!important;
         cell {
             background: #2f3542;
         }
         cell:nth-child(1n+1):not(:last-child) {
-            border-right: .4vmin solid rgba(0, 0, 0, 0.3);
+            border-right: .1rem solid dimgray;
         }
     }
     cell {
@@ -456,14 +457,18 @@ section[tabelle] {
         vertical-align: top;
         padding: .4vmin;
         text-align: center;
-        background: #f1f2f6;
+        background: mintcream;
     }
     row {
+        &:not(:last-child){
+          border-bottom: .1rem solid darkgray;
+        }
         cell:nth-child(1n+1):not(:last-child) {
-            border-right: .2vmin solid rgba(0, 0, 0, 0.3);
+            border-right: .1rem solid darkgray;
         }
     }
 }
+
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 // listen
@@ -484,6 +489,7 @@ section[tabelle] {
   margin: 1vmin 0;
   list-style: none;
   ul,ol{
+    padding-left:0;
     li{
       float: left;
       margin: 0 .2vmin;
