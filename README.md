@@ -11,7 +11,7 @@ It is not stable to use currently as it may change all the time and get new comp
 
 Use on your own risk, get inspired, push, comment, star and crap if you like to.
 
-This here is more a doc for me myself than anybody else.
+This here is more a doc for me myself than anything else.
 
 It uses invalid HTML tags, which work in legacy, tested browsers like Android, iOS, Chrome, etc. but may not fully work in every browser.
 
@@ -22,3 +22,28 @@ It is basically a fixed grid with custom html components following this design.
 I am inspired by other codepen pens and Google's material design and flat design in general.
 
 raw testing 'cdn': https://rawgithub.com/blubbll/muffin.css/master/core.min.css
+
+
+Components:
+
+Tables (normal, inline, fullwidth headers using another table)
+
+Inputs (normal, inline)
+
+Lists (normal, inline)
+
+Grid
+
+Sections
+
+Meta bg
+
+Buttons
+
+Background colors
+
+text sizes
+
+Text colors
+
+Cursors
