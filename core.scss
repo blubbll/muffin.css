@@ -488,27 +488,33 @@ section {
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ tables
 section[tabelle] {
+    empty-cells: show;
+    border-collapse: separate;
     background: transparent!important;
     font-size: $default-fontsize;
     line-height: $default-lineheight;
     display: table;
-    border-collapse: collapse;
     row,
     header {
         display: table-row;
     }
     header {
-        border: .1rem solid darkgray;
-        border-bottom: none;
+        border: .15rem solid darkgray;
         font-weight: bold;
         background: #212529!important;
         color: #fff;
         cell {
+          border-left: none;
             background: #2f3542;
         }
-        cell:nth-child(1n+1):not(:last-child) {
-            border-right: .1rem solid dimgray;
+        cell:nth-child(1n+1):not(:last-child) {       border-left: none;
+            border-right: .15rem solid dimgray;
         }
+      cell:first-child {
+        border-left: none;
+        
+    }
+        
     }
     cell {
         display: table-cell;
@@ -516,51 +522,67 @@ section[tabelle] {
         padding: .2vmin;
         text-align: center;
         background: mintcream;
+       
+    }
+    cell:first-child {
+        border-left: .15rem solid darkgray;
+      
     }
     row {
-        border: .1rem solid darkgray;
+        border: .15rem solid darkgray;
+        border-top: none;
         cell:nth-child(1n+1) {
-            border-right: .1rem solid darkgray;
+            border-right: .15rem solid darkgray; border-bottom: .15rem solid darkgray;
+      
         }
     }
-  &[inline]{
-    border: .1rem solid darkgray;
-    border-left: none;
-    header{
-      z-index: 1;
-      border-top: none;
-      border-right: .1rem solid darkgray;
-      cell{
-        border-right: none;
-       
-        border-left: .2rem solid transparent;
-        border-right: .2rem solid transparent;
-        display: block!important;
+    &[inline] {
+      header{
+        border: none;
+        cell{
+          border-bottom: .15rem solid #2f3542;
+        }
       }
-      cell:nth-child(1n+1):not(:last-child){
-        border-bottom: .075rem dimgray solid;
-        border-right: none;
-        text-align: center;
-        
-      }
-      display: block!important;
-      float: left;
+        border-right: .15rem solid darkgray;
+        border-top: none;
+        border-left: none;
+        header {
+            z-index: 1;
+            border-top: none;
+            border-right: .15rem solid #2f3542;
+            cell {
+                border-right: none;
+                border-left: .15rem solid transparent;
+                border-right: .15rem solid transparent;
+                display: block!important;
+            }
+            cell:nth-child(1n+1):not(:last-child) {
+                border-bottom: .15rem dimgray solid;
+                border-right: none;
+                text-align: center;
+            }
+            display: block!important;
+            float: left;
+        }
+
+        row {
+            border: none!important;
+            display: block!important;
+          
+            cell {
+                border-right: none;
+                text-indent: .4rem;
+                border-right: .15rem solid transparent;
+                display: block!important;
+                text-align: left;
+              
+            }
+            cell:nth-child(1n+1):not(:last-child) {
+                border-bottom: .15rem solid darkgray;
+            }
+        }
+      
     }
-    row{
-      border: none!important;
-      display: block!important;
-      cell{
-        border-right: none;
-        text-indent: .4rem;
-        border-right: .2rem solid transparent;
-        display: block!important;
-        text-align: left;
-      }
-      cell:nth-child(1n+1):not(:last-child){
-        border-bottom: .075rem darkgray solid;
-      }
-    }
-  }
 }
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -572,41 +594,42 @@ section[tabelle] {
         padding-left: 0;
         list-style: none;
         list-style-position: inside;
-      li:nth-child(1n+1):not(:last-child){
-        margin-bottom: 1.5vw;
-      }
-      
-    }
-&[inline] {
-    list-style: none;
-    ul,
-    ol {
-        padding-left: 0;
-        li {
-            float: left;
-           
+        li:nth-child(1n+1):not(:last-child) {
+            margin-bottom: 1.5vw;
         }
-        li:nth-child(1n+1):not(:last-child){
-        margin-bottom: 0;
-        margin-right: .8rem;
-      }
-       
     }
-}
-}
-li[button]{
-  border-bottom: .1rem solid dimgray;
-}
-li[button]:hover{
-  border-bottom: .1rem solid mintcream;
-}
-li[star]:before{
-  content: " \2605 ";
+    &[inline] {
+        list-style: none;
+        ul,
+        ol {
+            padding-left: 0;
+            li {
+                float: left;
+            }
+            li:nth-child(1n+1):not(:last-child) {
+                margin-bottom: 0;
+                margin-right: .8rem;
+            }
+        }
+    }
 }
 
-li[line]:before{
-  content: "\268A";
+li[button] {
+    border-bottom: .1rem solid dimgray;
 }
+
+li[button]:hover {
+    border-bottom: .1rem solid mintcream;
+}
+
+li[star]:before {
+    content: " \2605 ";
+}
+
+li[line]:before {
+    content: "\268A";
+}
+
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //🚧 button
 button {
@@ -646,15 +669,16 @@ button {
         height: 120%;
         top: 50%;
         left: 50%;
-        @include translate(-50%,
-        -50%);
+        @include translate(-50%, -50%);
     }
 }
 
 button[link] {
     background: transparent;
     outline-color: transparent;
-    box-shadow: none;
+    @each$prefix in $prefix-list {
+        #{$prefix}box-shadow: none;
+    }
 }
 
 button[slate] {
@@ -733,28 +757,29 @@ text {
         @each$prefix in $prefix-list {
             #{$prefix}text-align: center;
         }
-    }
-    //links alignen
+    } //links alignen
     &[left] {
         float: none;
         @each$prefix in $prefix-list {
             #{$prefix}text-align: left;
         }
-    }
-    //rechts align
+    } //rechts align
     &[right] {
         float: none;
         @each$prefix in $prefix-list {
             #{$prefix}text-align: right;
         }
     }
-    &[i],i {
+    &[i],
+    i {
         font-style: italic;
     }
-    &[o],o {
+    &[o],
+    o {
         font-style: oblique;
     }
-    &[u],u {
+    &[u],
+    u {
         text-decoration: underline!important;
     }
 }
