@@ -549,7 +549,7 @@ section[tabelle] {
         header {
             z-index: 1;
             border-top: none;
-            border-right: .15rem solid #2f3542;
+            border-right: none;
             cell {
                 border-right: none;
                 border-left: .15rem solid transparent;
@@ -572,7 +572,7 @@ section[tabelle] {
             cell {
                 border-right: none;
                 text-indent: .4rem;
-                border-right: .15rem solid transparent;
+                border-right:none!important;
                 display: block!important;
                 text-align: left;
               
@@ -878,8 +878,9 @@ text[dark] {
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ Bilderbox
 section[lightbox] {
+    
     img {
-        border: .1rem solid lightgray;
+     outline: .1rem solid dimgray;
         width: 100%;
     }
     @for$i from+1 through+20 {
@@ -891,7 +892,9 @@ section[lightbox] {
         }
     }
     text {
-        line-height: $default-lineheight - .75!important;
+        line-height: $default-lineheight - .5!important;
+        outline: .1rem solid lightgray;
+        background: rgba(0,0,0,0.05);
         color: dimgray!important;
     }
     background: mintcream;
