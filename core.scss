@@ -782,6 +782,10 @@ text {
     u {
         text-decoration: underline!important;
     }
+    &[b],
+    b {
+        text-weight: bold!important;
+    }
 }
 
 text[slate] {
