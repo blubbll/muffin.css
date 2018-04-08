@@ -750,10 +750,10 @@ button[dark] {
 //⚡ text
 text {
     line-height: $default-lineheight;
-    display: inline-block;
+    display: initial;
     text-shadow: .01rem .01rem rgba(0, 0, 0, .2);
     &[center] {
-        display: block;
+        display: inline-block;
         @each$prefix in $prefix-list {
             #{$prefix}text-align: center;
         }
