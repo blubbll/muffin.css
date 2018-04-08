@@ -324,7 +324,7 @@ section {
     } // framed  hintergrund
     &[framed] {
         background: ghostwhite;
-        padding: .75% 1%;
+        padding: .5rem .5rem;
     } // framed outer schatten
     &[framed]>outer {
         @each$prefix in $prefix-list {
