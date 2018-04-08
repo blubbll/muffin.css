@@ -306,6 +306,18 @@ $gridcolor: rgb(192,
 43);
 /// allgemein
 section {
+    &[center]{
+      text-align:center;
+      padding: 25% auto;
+    }
+    &[left]{
+      text-align:left;
+      padding: auto 75% auto auto;
+    }
+    &[right]{
+      text-align:right;
+      padding: auto auto auto 75%;
+    }
     >section {
         float: left;
         display: inline-block;
@@ -750,10 +762,10 @@ button[dark] {
 //⚡ text
 text {
     line-height: $default-lineheight;
-    display: initial;
+    display: inline;
     text-shadow: .01rem .01rem rgba(0, 0, 0, .2);
     &[center] {
-        display: inline-block;
+        display: block;
         @each$prefix in $prefix-list {
             #{$prefix}text-align: center;
         }
