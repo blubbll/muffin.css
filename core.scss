@@ -306,6 +306,12 @@ $gridcolor: rgb(192,
 43);
 /// allgemein
 section {
+    &[absolute]{
+      position: absolute;
+    }
+    &[fixed]{
+      position: fixed;
+    }
     &[center]{
       text-align:center;
       padding: 25% auto;
