@@ -624,7 +624,7 @@ section[tabelle] {
         list-style: none;
         list-style-position: inside;
         li:nth-child(1n+1):not(:last-child) {
-            margin-bottom: 1.5vw;
+            margin-bottom: .5vmin;
         }
     }
     &[inline] {
@@ -911,10 +911,16 @@ text[dark] {
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ Bilderbox
 section[lightbox] {
+
+    @each$prefix in $prefix-list {
+        #{$prefix}box-shadow: none!important;
+    }
+  &+text{
     
-    img {
-     outline: .1rem solid darkgray;
+  }
+    img{
         width: 100%;
+        outline: 1pt solid dimgray;
     }
     @for$i from+1 through+20 {
         $value: percentage(0.1*$i/2);
