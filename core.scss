@@ -268,7 +268,8 @@ main {
     margin: auto; //padding-bottom: (150vh/$aspect-ratio);
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
-        max-width: #{$prefix}calc(#{100vh*$aspect-ratio}); //remove for full fluid, not recommended
+        max-width: #{$prefix}calc(#{99vh*$aspect-ratio});
+        max-height: #{$prefix}calc(#{99vw*$aspect-ratio});
     }
 }
 
