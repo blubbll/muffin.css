@@ -1,6 +1,6 @@
 /*!
 /*   ▄▄^▄▄   *\   
-  '█▀ o ° ▀█' 
+  '█▀ o_° ▀█' 
  '█▄▄▄▄▄▄▄▄▄█⁣'
  '█𝘮𝘶𝘧𝘧𝘪𝘯.𝙘𝙨𝙨█'
    █▄▄▄▄▄▄▄█   
@@ -109,14 +109,24 @@ input:active {
 $aspect-ratio: 16/10; //3/2
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ font sizes
-$default-fontsize: 2vmin;
-$default-lineheight: 3vmin;
+$default-fontsize: 2/$aspect-ratio + vmin;
+$default-lineheight: 3/$aspect-ratio + vmin;
 $size-list:xs sm md lg xl;
+*{
+  font-size: $default-fontsize;
+}
 @each$size in $size-list {
     $i: index($size-list, $size);
     [#{$size}] {
-        font-size: $i+vmin;
-        line-height: $i+1+vmin;
+      
+    @each$prefix in $prefix-list {
+
+      font-size: 1*$i/$aspect-ratio + vmin;
+      line-height: 1.1*$i/$aspect-ratio + vmin;
+      
+    }
+      
+        
     }
 }
 
@@ -268,8 +278,8 @@ main {
     margin: auto; //padding-bottom: (150vh/$aspect-ratio);
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
-        max-width: #{$prefix}calc(#{99vh*$aspect-ratio});
-        max-height: #{$prefix}calc(#{99vw*$aspect-ratio});
+        max-width: #{$prefix}calc(#{100vmin*$aspect-ratio});
+        max-height: #{$prefix}calc(#{100vmin*$aspect-ratio});
     }
 }
 
@@ -286,8 +296,8 @@ content {
     right: 0;
     @each$prefix in $prefix-list {
         $i: index($prefix-list, $prefix);
-        height: #{$prefix}calc(100% - 2vh);
-        width: #{$prefix}calc(100% - 2vh);
+        height: #{$prefix}calc(100% - 2vw);
+        width: #{$prefix}calc(100% - 2vw);
     } // rastershadow außen
     @each$prefix in $prefix-list {
         #{$prefix}box-shadow: 0 2vh 10vh .5vh rgba(0, 0, 0, 0.5), 0 2vh 10vh 10vh rgba(236, 240, 241, 1);
@@ -358,7 +368,7 @@ section {
     } //outer
     &[framed]>outer {
         @include border-radius(.3vmin);
-        padding: 0 1vmin;
+        padding: 0 1vw;   
         background: white;
         display: block;
     }
@@ -684,8 +694,8 @@ button {
         }
     }
     &:active:before {
-        width: 120%;
-        height: 120%;
+        width: 100%;
+        height: 100%;
         top: 50%;
         left: 50%;
         @include translate(-50%, -50%);
