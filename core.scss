@@ -55,6 +55,7 @@ $prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms
   transition: outline 350ms!important;
 }
 [hover-shine]:hover{
+  @include border-radius(0);
   outline: 200vw solid rgba(0,0,0,0.45);
   z-index: 2018;
 }
@@ -106,7 +107,7 @@ input:active {
 
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ config.ratio
-$aspect-ratio: 16/10; //3/2
+$aspect-ratio: 15/9; //3/2 / 16/10 / 16/9
 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 //⚡ font sizes
 $default-fontsize: 2/$aspect-ratio + vmin;
@@ -300,13 +301,13 @@ content {
         width: #{$prefix}calc(100% - 2vw);
     } // rastershadow außen
     @each$prefix in $prefix-list {
-        #{$prefix}box-shadow: 0 2vh 10vh .5vh rgba(0, 0, 0, 0.5), 0 2vh 10vh 10vh rgba(236, 240, 241, 1);
+        #{$prefix}box-shadow: 0 2vw 10vw .5vw rgba(0, 0, 0, 0.5), 0 2vw 10vw 10vw rgba(236, 240, 241, 1);
     }
 }
 
 meta[bg][dark]+main>content {
     @each$prefix in $prefix-list {
-        #{$prefix}box-shadow: 0 2vh 7.5vh 1.5vh rgba(0, 0, 0, 0.5), 0 2vh 10vh 10vh rgba(83, 92, 104, 1)!important;
+        #{$prefix}box-shadow: 0 2vw 7.5vw 1.5vw rgba(0, 0, 0, 0.5), 0 2vw 10vw 10vw rgba(83, 92, 104, 1)!important;
     }
 }
 
@@ -357,17 +358,20 @@ section {
     } // framed outer schatten
     &[framed]>outer {
         @each$prefix in $prefix-list {
-            #{$prefix}box-shadow: 0 .1rem .1rem rgba(0, 0, 0, .12), 0 .1rem .1rem rgba(0, 0, 0, .24);
+            //#{$prefix}box-shadow: 0 .1rem .1rem rgba(0, 0, 0, .12), 0 .1rem .1rem rgba(0, 0, 0, .24);
+          #{$prefix}box-shadow: 0 .2rem .2rem 0 rgba(0,0,0,.08), 0 .3rem .1pt -.2rem rgba(0,0,0,.04), 0 .1rem .5rem 0 rgba(0,0,0,.01);
+          
             #{$prefix}transition: #{$prefix}box-shadow .2s ease-out;
         } // hover-schatten bei framed
         &:hover {
             @each$prefix in $prefix-list {
-                #{$prefix}box-shadow: 0 .1rem .1rem rgba(0, 0, 0, .24), 0 .1rem 1rem rgba(0, 0, 0, .19)
+               // #{$prefix}box-shadow: 0 .1rem .1rem rgba(0, 0, 0, .24), 0 .1rem 1rem rgba(0, 0, 0, .19)
+                #{$prefix}box-shadow: 0 .2rem .2rem 0 rgba(0,0,0,.14), 0 .3pt .1rem -.2rem rgba(0,0,0,.12), 0 .1rem .5rem 0 rgba(0,0,0,.08);
             }
         }
     } //outer
     &[framed]>outer {
-        @include border-radius(.3vmin);
+        @include border-radius(8pt);
         padding: 0 1vw;   
         background: white;
         display: block;
@@ -445,8 +449,8 @@ section {
 
 //⚡ HÖHE framed inner
 @for$i from+1 through+20 {
-    //$value: percentage(0.01*$i/2);
-    $value: $i+vw;
+    $value: percentage(0.01*$i/2);
+    //$value: $i+vw;
     $name: $i/2;
     $name: format($name, $i);
     [h#{$name}][framed]>outer {
