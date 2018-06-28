@@ -55,7 +55,7 @@ $prefix-list: '-webkit-', '-apple-', '-khtml-', '-icab-', '-moz-', '-wap-', '-ms
   transition: outline 350ms!important;
 }
 [hover-shine]:hover{
-  outline: 200vh solid rgba(0,0,0,0.45);
+  outline: 200vw solid rgba(0,0,0,0.45);
   z-index: 2018;
 }
 
@@ -446,7 +446,7 @@ section {
 //⚡ HÖHE framed inner
 @for$i from+1 through+20 {
     //$value: percentage(0.01*$i/2);
-    $value: $i+vh;
+    $value: $i+vw;
     $name: $i/2;
     $name: format($name, $i);
     [h#{$name}][framed]>outer {
@@ -474,18 +474,19 @@ section {
     label {
         display: block;
         width: 100%;
-        padding-top: .8vh;
-        padding-left: .8vh;
+        padding-top: .8vw;
+        padding-left: .8vw;
     }
     input {
-        @include border-radius(.2vh);
+        @include border-radius(.2vw);
         background: mintcream;
-        width: 92%;
-        margin: 1.5% 4% 2% 4%;
-        border-bottom: .2vmin solid darkgray;
-        padding: 1.6vh .4vw;
+        width: 91%;
+        border-bottom: .15vw solid darkgray;
+        padding: .1vw .4vw;
         display: block-inline;
-        height: 3vmin;
+        height: 100%;
+        margin-left: 4%;
+        margin-bottom: 2%;
     }
     input:active,
     input:focus {
@@ -500,17 +501,16 @@ section {
         display: inline-block;
         float: left;
         width: 20%;
-        margin-top: 1.05vh;
-        padding-top: .4vh;
+        padding-top: .2vw;
         padding-left: .8vw;
-        padding-right: 0vh;
+        margin-left: 0;
         display: inline-block;
         float: left;
         position: absolute;
     }
     >input {
         margin-left: 20%;
-        width: 76%
+        width: 75%
     }
 }
 
@@ -671,7 +671,7 @@ button {
     }
     color: black;
     cursor: pointer;
-    margin: 0 .5vh;
+    margin: 0 .5vw;
     opacity: .75;
     outline-color: black;
     outline-style: solid;
